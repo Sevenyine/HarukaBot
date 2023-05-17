@@ -61,6 +61,8 @@ async def get_dynamic_screenshot_mobile(dynamic_id):
             wait_until="networkidle",
             timeout=plugin_config.haruka_dynamic_timeout * 1000,
         )
+        if await page.query_selector(".geetest_panel"):
+            return None
         # 动态被删除或者进审核了
         if page.url == "https://m.bilibili.com/404":
             return None
@@ -135,6 +137,8 @@ async def get_dynamic_screenshot_pc(dynamic_id):
             wait_until="networkidle",
             timeout=plugin_config.haruka_dynamic_timeout * 1000,
         )
+        if await page.query_selector(".geetest_panel"):
+            return None
         # 动态被删除或者进审核了
         if page.url == "https://www.bilibili.com/404":
             return None
